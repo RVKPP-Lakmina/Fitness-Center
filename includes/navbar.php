@@ -1,10 +1,9 @@
 <header class="navbar">
-    <div class="navbar-container">
-        <!-- Logo -->
+    <div class="navbar-container" id="navbarContainer">
         <a href="/" class="logo">
-            <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12l14-8v16l-14-8z" />
-            </svg>
+            <span class="logo-icon">
+                <i class='fas fa-dumbbell' style='font-size:24px; rotate: 30deg'></i>
+            </span>
             <span class="logo-text">FitLife</span>
         </a>
 
@@ -13,11 +12,9 @@
             <?php
             $navLinks = [
                 ["name" => "Home", "href" => "/fitness-site/index.php"],
-                ["name" => "About", "href" => "/about"],
-                ["name" => "Classes", "href" => "/classes"],
+                ["name" => "Activities", "href" => "/activities"],
                 ["name" => "Trainers", "href" => "/trainers"],
                 ["name" => "Membership", "href" => "/membership"],
-                ["name" => "Contact", "href" => "/contact"],
             ];
 
             foreach ($navLinks as $link) {
@@ -28,30 +25,28 @@
         </nav>
 
         <!-- CTA Button -->
-        <a href="/membership" class="cta-button">Join Now</a>
+        <a href="/membership" class="nav-cta-button">Join Now</a>
+    </div>
+</header>
 
-        <!-- Mobile Menu -->
-        <button class="menu-button" id="menu-toggle">
+
+
+<!-- <button class="menu-button" id="menu-toggle">
             <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
             </svg>
-        </button>
+        </button> -->
 
-        <!-- Mobile Menu Content -->
-        <div class="mobile-menu" id="mobile-menu">
+<!-- <div class="mobile-menu" id="mobile-menu">
             <button class="close-button" id="menu-close">
                 <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
             <nav class="mobile-nav">
-                <?php
-                foreach ($navLinks as $link) {
+                           foreach ($navLinks as $link) {
                     echo "<a href='{$link["href"]}' class='mobile-nav-item'>{$link["name"]}</a>";
                 }
-                ?>
             </nav>
             <a href="/membership" class="mobile-cta">Join Now</a>
-        </div>
-    </div>
-</header>
+        </div> -->

@@ -25,26 +25,32 @@ h1 {
   z-index: 50;
   transition: all 0.3s ease-in-out;
   background: transparent;
-  padding: 20px 0;
+  padding: 10px 10px;
 }
 
-.navbar.scrolled {
+.navbar .scrolled {
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
-  padding: 12px 0;
+  padding: 12px;
+  border-radius: 10px;
 }
 
 .navbar-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100vw !important;
+  width: 90% !important;
   margin: 0 auto;
   padding: 0 20px;
 }
 
+.navbar-container:first {
+  background-color: yellow;
+}
+
 .logo {
+  flex: 1fr;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -57,7 +63,7 @@ h1 {
   color: #ffffff;
 }
 
-.navbar.scrolled .logo-icon {
+.navbar .scrolled .logo-icon {
   color: #16a34a;
 }
 
@@ -67,7 +73,7 @@ h1 {
   color: #ffffff;
 }
 
-.navbar.scrolled .logo-text {
+.navbar .scrolled .logo-text {
   color: #1f2937;
 }
 
@@ -79,6 +85,8 @@ h1 {
   .nav-links {
     display: flex;
     gap: 24px;
+    flex: 3fr;
+    justify-content: center;
   }
 }
 
@@ -89,11 +97,14 @@ h1 {
   transition: color 0.3s ease-in-out;
 }
 
-.navbar.scrolled .nav-item {
+.navbar .scrolled .nav-item {
   color: #1f2937;
 }
 
-.nav-item:hover {
+.nav-item:hover,
+.active,
+.navbar .scrolled .nav-item:hover,
+.navbar .scrolled .active {
   color: #16a34a;
 }
 
@@ -101,13 +112,14 @@ h1 {
   color: #16a34a;
 }
 
-.cta-button {
+.nav-cta-button {
   display: none;
 }
 
 @media (min-width: 768px) {
-  .cta-button {
+  .nav-cta-button {
     display: inline-block;
+    flex: 1fr;
     background-color: #ffffff;
     color: #16a34a;
     padding: 10px 20px;
@@ -117,7 +129,16 @@ h1 {
     transition: background 0.3s ease-in-out;
   }
 
-  .cta-button:hover {
+  .navbar .scrolled .nav-cta-button {
+    background-color: #16a34a;
+    color: #ffffff;
+  }
+
+  .navbar .scrolled .nav-cta-button:hover {
+    background-color: oklch(0.527 0.154 150.069);
+  }
+
+  .nav-cta-button:hover {
     background-color: rgba(255, 255, 255, 0.9);
   }
 }
@@ -142,7 +163,7 @@ h1 {
   color: white;
 }
 
-.navbar.scrolled .menu-icon {
+.navbar .scrolled .menu-icon {
   color: #1f2937;
 }
 
@@ -637,7 +658,6 @@ h1 {
 
 .cta-button {
   display: block;
-  width: 100%;
   padding: 0.75rem;
   font-size: 1rem;
   font-weight: bold;

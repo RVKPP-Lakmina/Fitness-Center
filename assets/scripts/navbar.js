@@ -1,13 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const menuButton = document.getElementById("menu-toggle");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const closeButton = document.getElementById("menu-close");
+  const navbar = document.getElementById("navbarContainer");
 
-  menuButton.addEventListener("click", function () {
-    mobileMenu.classList.add("active");
-  });
-
-  closeButton.addEventListener("click", function () {
-    mobileMenu.classList.remove("active");
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 20) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
   });
 });
