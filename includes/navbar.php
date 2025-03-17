@@ -1,6 +1,6 @@
 <header class="navbar">
     <div class="navbar-container" id="navbarContainer">
-        <a href="/" class="logo">
+        <a href="?page=main/index" class="logo">
             <span class="logo-icon">
                 <i class='fas fa-dumbbell' style='font-size:24px; rotate: 30deg'></i>
             </span>
@@ -11,14 +11,15 @@
         <nav class="nav-links">
             <?php
             $navLinks = [
-                ["name" => "Home", "href" => "/fitness-site/index.php"],
-                ["name" => "Activities", "href" => "/activities"],
-                ["name" => "Trainers", "href" => "/trainers"],
-                ["name" => "Membership", "href" => "/membership"],
+                ["name" => "Home", "href" => "?page=main/index"],
+                ["name" => "Activities", "href" => "?page=activities/index"],
+                ["name" => "Trainers", "href" => "?page=trainers/index"],
+                ["name" => "Membership", "href" => "?page=main/index"],
             ];
 
             foreach ($navLinks as $link) {
-                $activeClass = ($_SERVER['REQUEST_URI'] == $link["href"]) ? "active" : "";
+                $cleanPage = str_replace('?page=', '', $link["href"] ?? '');
+                $activeClass = ($_GET['page'] == $cleanPage) ? "active" : "";
                 echo "<a href='{$link["href"]}' class='nav-item $activeClass'>{$link["name"]}</a>";
             }
             ?>

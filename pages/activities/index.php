@@ -1,20 +1,29 @@
-<?php include '../../includes/header.php'; ?>
+<?php
+require_once 'includes/config.php';
+require_once 'includes/Activity.class.php';
+$api = new Api();
 
-<h1>All Activities</h1>
-<div class="activity-list">
-    <?php
-    require_once '../../includes/config.php';
-    $query = 'SELECT * FROM activities';
-    $stmt = $db->prepare($query);
-    $stmt->execute();
-    
-    while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo '<div class="activity-item">';
-        echo '<h3><a href="view.php?id='.$row['id'].'">'.$row['name'].'</a></h3>';
-        echo '<p>'.$row['description'].'</p>';
-        echo '</div>';
+$response = $api->get('activities');
+$activities = [];
+
+if (is_array($response)) {
+    foreach ($response as $activity) {
+        if (isset($activity['id'], $activity['name'], $activity['brief_description'], $activity['benefits'], $activity['price'])) {
+            $activities[] = new Activity($activity['id'], $activity['name'], $activity['brief_description'], $activity['benefits'], $activity['price']);
+        }
     }
-    ?>
-</div>
+}
+?>
 
-<?php include '../../includes/footer.php'; ?>
+<main style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; background-color: gray">
+    <?php foreach ($activities as $activity) : ?>
+        <section>
+            <div class="card" id="activity-<?= $activity->getId() ?>">
+                <h2><?= htmlspecialchars($activity->getName()) ?></h2>
+                <p><?= htmlspecialchars($activity->getBriefDescription()) ?></p>
+                <p><strong>Benefits:</strong> <?= htmlspecialchars($activity->getBenefits()) ?></p>
+                <p class="price">Price: $<?= htmlspecialchars($activity->getPrice()) ?></p>
+            </div>
+        </section>
+    <?php endforeach; ?>
+</main>

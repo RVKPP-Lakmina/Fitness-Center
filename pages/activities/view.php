@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+require_once 'includes/config.php';
+require_once 'includes/Activity.class.php';
+$api = new Api();
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+$response = $api->get('activities');
+$activities = [];
 
-<body>
+if (is_array($response)) {
+    foreach ($response as $activity) {
+        if (isset($activity['id'], $activity['name'], $activity['brief_description'], $activity['benefits'], $activity['price'])) {
+            $activities[] = new Activity($activity['id'], $activity['name'], $activity['brief_description'], $activity['benefits'], $activity['price']);
+        }
+    }
+}
 
-</body>
-
-</html>
+var_dump($activities);
